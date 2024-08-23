@@ -1,6 +1,7 @@
 package com.ish.ar.service;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.client.RestTemplate;
 
 import com.ish.ar.entity.CitizenApplicationEntity;
+import com.ish.ar.exception.CitizenNotFoundException;
 import com.ish.ar.exception.SSNNotFoundException;
 import com.ish.ar.model.CitizenApplicationInputBean;
 import com.ish.ar.repository.ICitizenAppRegistrationRepository;
@@ -42,7 +44,7 @@ public class CitizenAppRegistrationServiceImpl implements ICitizenAppRegistratio
 				CitizenApplicationEntity citizenApplicationEntity = new CitizenApplicationEntity();
 				BeanUtils.copyProperties(citizenApplicationInputBean, citizenApplicationEntity);
 				citizenApplicationEntity.setStateName(stateName);
-				Integer appId = registrationRepository.save(citizenApplicationEntity).getCitizenApplicationId();
+				Long appId = registrationRepository.save(citizenApplicationEntity).getCitizenApplicationId();
 				if (appId > 0) {
 					return "Application Id : " + appId;
 				} else {
@@ -62,6 +64,12 @@ public class CitizenAppRegistrationServiceImpl implements ICitizenAppRegistratio
 	public List<CitizenApplicationEntity> getCitizenRegistration() {
 		
 		return registrationRepository.findAll();
+	}
+
+	@Override
+	public CitizenApplicationEntity getCitizenRegistrationById(Long citizenAppId) {
+		
+		return registrationRepository.findById(citizenAppId).orElseThrow(()->new CitizenNotFoundException("Citizen application not found"));
 	}
 
 }

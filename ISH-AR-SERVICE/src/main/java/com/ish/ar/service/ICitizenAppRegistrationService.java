@@ -11,5 +11,7 @@ public interface ICitizenAppRegistrationService {
 
 	public List<CitizenApplicationEntity> getCitizenRegistration();
 
+	public CitizenApplicationEntity getCitizenRegistrationById(Long citizenAppId);
+
 
 }

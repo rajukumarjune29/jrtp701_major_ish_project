@@ -1,6 +1,7 @@
 package com.ish.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,7 @@ public class PlanController {
 	}
 
 	@GetMapping("/plan-category/{planCategoryId}")
-	public ResponseEntity<?> getPlanCategory(@PathVariable("planCategoryId") Integer planCategoryId) {
+	public ResponseEntity<?> getPlanCategory(@PathVariable("planCategoryId") Long planCategoryId) {
 		return new ResponseEntity<PlanCategory>(planCategoryService.getPlanCategoryById(planCategoryId),HttpStatus.OK);
 
 	}
@@ -66,9 +67,15 @@ public class PlanController {
 		return new ResponseEntity<List<String>>(planMasterService.addPlanMasters(planMasterBeans), HttpStatus.CREATED);
 
 	}
+	
+	@GetMapping("/plan-masters/names")
+	public ResponseEntity<?> getPlanMasterNames() {
+		return new ResponseEntity<Map<Long,String>>(planMasterService.getPlanMasterNames(),HttpStatus.OK);
 
+
+	}
 	@GetMapping("/plan-master/{planMasterId}")
-	public ResponseEntity<?> getPlanMaster(@PathVariable("planMasterId") Integer planMasterId) {
+	public ResponseEntity<?> getPlanMaster(@PathVariable("planMasterId") Long planMasterId) {
 		return new ResponseEntity<PlanMaster>(planMasterService.getPlanMasterById(planMasterId),HttpStatus.OK);
 
 

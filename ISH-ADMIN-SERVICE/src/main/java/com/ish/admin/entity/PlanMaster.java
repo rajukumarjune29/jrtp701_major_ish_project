@@ -24,7 +24,7 @@ public class PlanMaster {
 	@SequenceGenerator(name = "planMasterSeqGen", sequenceName = "PLAN-Master-SEQ-GEN", initialValue = 1000001, allocationSize = 1)
 	@GeneratedValue(generator = "planMasterSeqGen", strategy = GenerationType.SEQUENCE)
 	@Column(name = "PLAN_ID")
-	private Integer planId;
+	private Long planId;
 
 	@Column(name = "PLAN_NAME", length = 50)
 	private String planName;
@@ -39,7 +39,7 @@ public class PlanMaster {
 	private LocalDate planEndDate;
 
 	@Column(name = "CATEGORY_ID")
-	private Integer categoryId;
+	private Long categoryId;
 
 	@Column(name = "ACTIVE_STATUS")
 	private Boolean activeStatus;

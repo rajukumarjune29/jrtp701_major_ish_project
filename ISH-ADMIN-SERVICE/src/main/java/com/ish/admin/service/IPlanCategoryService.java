@@ -11,7 +11,7 @@ public interface IPlanCategoryService {
 
 	public List<String> addPlanCategories(List<PlanCategoryBean> planCategoryBeans);
 
-	public PlanCategory getPlanCategoryById(Integer planCategoryId);
+	public PlanCategory getPlanCategoryById(Long planCategoryId);
 
 	public List<PlanCategory> getPlanCategories();
 

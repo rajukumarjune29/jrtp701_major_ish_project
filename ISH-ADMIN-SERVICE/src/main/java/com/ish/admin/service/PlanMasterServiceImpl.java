@@ -1,7 +1,9 @@
 package com.ish.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,7 @@ public class PlanMasterServiceImpl implements IPlanMasterService {
 	}
 
 	@Override
-	public PlanMaster getPlanMasterById(Integer planMasterId) {
+	public PlanMaster getPlanMasterById(Long planMasterId) {
 		
 		return masterRepository.findById(planMasterId).orElseThrow();
 	}
@@ -47,6 +49,15 @@ public class PlanMasterServiceImpl implements IPlanMasterService {
 	public List<PlanMaster> getPlanMasters() {
 		
 		return masterRepository.findAll();
+	}
+
+	@Override
+	public Map<Long, String> getPlanMasterNames() {
+		Map<Long, String> plansMap=new HashMap<Long, String>();
+		masterRepository.findAllPlanMasterIdAndNames().forEach(obj->{
+			plansMap.put((Long)obj[0], obj[1].toString());
+		});
+		return plansMap;
 	}
 
 }

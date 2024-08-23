@@ -23,7 +23,7 @@ public class PlanCategory {
 	@SequenceGenerator(name = "planSeqGen",sequenceName = "PLAN-SEQ-GEN",initialValue = 100001,allocationSize = 1)
 	@GeneratedValue(generator = "planSeqGen",strategy = GenerationType.SEQUENCE)
 	@Column(name = "CATEGORY_ID")
-	private Integer categoryId;
+	private Long categoryId;
 	@Column(name = "CATEGORY_NAME",length = 50)
 	private String categoryName;
 	@Column(name = "ACTIVE_STATUS")

@@ -35,7 +35,7 @@ public class PlanCategoryServiceImpl implements IPlanCategoryService {
 	}
 
 	@Override
-	public PlanCategory getPlanCategoryById(Integer planCategoryId) {
+	public PlanCategory getPlanCategoryById(Long planCategoryId) {
 		
 		return categoryRepository.findById(planCategoryId).orElseThrow();
 	}

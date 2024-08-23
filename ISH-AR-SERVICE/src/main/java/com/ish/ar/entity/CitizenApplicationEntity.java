@@ -25,7 +25,7 @@ public class CitizenApplicationEntity {
 	@SequenceGenerator(name = "arSeqGen",sequenceName = "AR-SEQ-GEN",initialValue = 10001,allocationSize = 1)
 	@GeneratedValue(generator = "arSeqGen",strategy = GenerationType.SEQUENCE)
 	@Column(name = "CITIZEN_APPLICATION_ID")
-	private Integer citizenApplicationId;
+	private Long citizenApplicationId;
 	@Column(name = "NAME",length = 50)
 	private String name;
 	private LocalDate dob;
